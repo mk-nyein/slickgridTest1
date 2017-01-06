@@ -7,6 +7,14 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def index_json
+    puts "-------------index_json---------------------"
+    @users = User.all
+    respond_to do |f|
+      f.js
+    end
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show

@@ -1,15 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 
-<%= link_to 'New User', new_user_path %>
   <!-- For the slickgrid  -->
 <div id="myGrid"  style="width:800px;height:300px;">
-something
 </div>
 
 <script>
     // Create the Slickgrid holder
     var grid;
+    // // Create the DataView.
+    // var dataView = new Slick.Data.DataView();
 
     // Create the columns name for slickgrid table
     var columns = [
@@ -18,13 +18,14 @@ something
       {id: 'address', name: 'Address', field: 'address'},
       {
         name: "Action",
-        field: "id",
-        id: "id",
+        field: "link",
+        id: "link",
         sortable: false,
         width: 250,
         formatter: linkFormatter = function ( row, cell, value, columnDef, dataContext ) {
             // return '<button type="input" onclick="alert('+ value + ')">' + value + '</button>';
-            return '<a href="/users/' + value + '" target="_blank" >Show</a> <a href="/users/' + value + '/edit" target="_blank" >Edit</a> <a href="/users/' + value + '" data-confirm="Are you sure?" data-method="delete" >Delete</a>';
+            return '<a href="/users/' + value + '">Show</a> <a href="/users/' + value + '/edit">Edit</a> <a href="/users/' + value + '" data-confirm="Are you sure?" data-method="delete" >Delete</a>';
+            // return "alert(dataContext['id'])";
         }
       }
     ];
@@ -36,26 +37,51 @@ something
     };
 
     // Create for the data to be added to the slickgrid table
-    var data = [];
+    // var data = [];
+    // var i = 0;
 </script>
-
 <!-- 
+<% @users.each do |user| %>
+  <script >
+      data[i] = {
+        link: <%= user.id %>,
+        name: '<%= user.name %>',
+        phone: "PHONE" + <%= user.id %>,
+        address: "01/01/2009"
+      };
+      i++;
+
+      // Pass it as a data provider to SlickGrid.
+      grid = new Slick.Grid("#myGrid", data, columns, options);
+
+      // //append items
+      //   grid.invalidateRow();
+      //   grid.updateRowCount();
+      //   grid.render();
+  </script>
+<% end %> -->
+<!-- For the slickgrid end -->
+
+
   <script >
       data = <%= @users.to_json.html_safe %>;
       // // Pass it as a data provider to SlickGrid.
       grid = new Slick.Grid("#myGrid", data, columns, options);
+
+      // jQuery(function() {
+
+      //   // # getJSON is a jQuery convenience function for doing an AJAX call
+      //   // # that fetches some JSON data.
+      //   jQuery.getJSON('http://example.com/users', function(data) {
+      //     grid = new Slick.Grid("#myGrid", data, columns, options);
+      //     $("#slickGrid").show();
+      //   });
+
+      // });
+
   </script>
--->
-
-  <script type="text/javascript">
 
 
-  $(document).ready(function() {
-    $.getJSON("<%= index_json_path %>", function(data) {
-        grid = new Slick.Grid("#myGrid", data, columns, options);
-    });
-  });
-</script>
 
 
 <!-- For sorting not done yet -->
@@ -125,5 +151,12 @@ something
   </script>
 <!-- For sorting not done yet -->
 
+<%= link_to 'New User', new_user_path %>
 
 </div>
+
+
+
+
+
+

@@ -6,6 +6,51 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link rel="stylesheet" href="slick.grid.css" type="text/css"/>
+  	<link rel="stylesheet" href="jquery-ui-1.11.3.custom.css" type="text/css"/>
+
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+  	<script src="/app/asserts/javascripts/jquery-1.11.2.min.js"></script>
+  	<script src="/app/asserts/javascripts/jquery.event.drag-2.3.0.js"></script>
+  	<script src="/app/asserts/javascripts/slick.core.js"></script>
+  	<script src="/app/asserts/javascripts/slick.grid.js"></script>
+
+    <style>
+      html, body {
+        margin: 0;
+        padding: 10;
+        background-color: White;
+        overflow: auto;
+      }
+
+      body {
+        font: 11px Helvetica, Arial, sans-serif;
+      }
+
+      #container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      #description {
+        position: fixed;
+        top: 30px;
+        right: 30px;
+        width: 25em;
+        background-color: beige;
+        border: solid 1px gray;
+        z-index: 1000;
+      }
+
+      #description h2 {
+        padding-left: 0.5em;
+      }
+    </style>
   </head>
 
   <body>
