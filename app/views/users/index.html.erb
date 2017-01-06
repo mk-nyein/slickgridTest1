@@ -2,126 +2,125 @@
 
 
 <%= link_to 'New User', new_user_path %>
-  <!-- For the slickgrid  -->
-<div id="myGrid"  style="width:800px;height:300px;">
-something
-</div>
+<!-- For the slickgrid display  -->
+  <div id="myGrid"  style="width:800px;height:300px;">
+    something
+  </div>
 
-<script>
-    // Create the Slickgrid holder
-    var grid;
+  <script>
+      // Create the Slickgrid holder
+      var grid;
 
-    // Create the columns name for slickgrid table
-    var columns = [
-      {id: 'name', name: 'Name', field: 'name'},
-      {id: 'phone', name: 'Phone', field: 'phone'},
-      {id: 'address', name: 'Address', field: 'address'},
-      {
-        name: "Action",
-        field: "id",
-        id: "id",
-        sortable: false,
-        width: 250,
-        formatter: linkFormatter = function ( row, cell, value, columnDef, dataContext ) {
-            // return '<button type="input" onclick="alert('+ value + ')">' + value + '</button>';
-            return '<a href="/users/' + value + '" target="_blank" >Show</a> <a href="/users/' + value + '/edit" target="_blank" >Edit</a> <a href="/users/' + value + '" data-confirm="Are you sure?" data-method="delete" >Delete</a>';
+      // Create the columns name for slickgrid table
+      var columns = [
+        {id: 'name', name: 'Name', field: 'name'},
+        {id: 'phone', name: 'Phone', field: 'phone'},
+        {id: 'address', name: 'Address', field: 'address'},
+        {
+          name: "Action",
+          field: "id",
+          id: "id",
+          sortable: false,
+          width: 250,
+          formatter: linkFormatter = function ( row, cell, value, columnDef, dataContext ) {
+                // return '<button type="input" onclick="alert('+ value + ')">' + value + '</button>';
+                return '<a href="/users/' + value + '" target="_blank" >Show</a> <a href="/users/' + value + '/edit" target="_blank" >Edit</a> <a href="/users/' + value + '" data-confirm="Are you sure?" data-method="delete" >Delete</a>';
+          }
         }
-      }
-    ];
+      ];
 
-    // Create the option for slickgrid
-    var options = {
-      enableCellNavigation: true,
-      enableColumnReorder: false
-    };
+      // Create the option for slickgrid
+      var options = {
+        enableCellNavigation: true,
+        enableColumnReorder: false
+      };
 
-    // Create for the data to be added to the slickgrid table
-    var data = [];
-</script>
-
-<!-- 
-  <script >
-      data = <%= @users.to_json.html_safe %>;
-      // // Pass it as a data provider to SlickGrid.
-      grid = new Slick.Grid("#myGrid", data, columns, options);
+      // Create for the data to be added to the slickgrid table
+      var data = [];
   </script>
--->
+
+ 
+  <!--  simple json file display -->
+  <!-- <script >
+      data = <%= @users.to_json.html_safe %>;
+      // Pass it as a data provider to SlickGrid.
+      grid = new Slick.Grid("#myGrid", data, columns, options);
+  </script> -->
+
 
   <script type="text/javascript">
-
-
-  $(document).ready(function() {
-    $.getJSON("<%= index_json_path %>", function(data) {
+    $(document).ready(function() {
+      $.getJSON("<%= index_json_path %>", function(data) {
         grid = new Slick.Grid("#myGrid", data, columns, options);
+      });
     });
-  });
-</script>
-
+  </script>
+<!-- For slickgrid display -->
 
 <!-- For sorting not done yet -->
-<!-- <div id="container">
-</div> -->
+  <!-- <div id="container">
+  </div> -->
   <script>
-    // var grid,
-    //     data = [],
-    //     columns = [
-    //       { id: "title", name: "Title", field: "title", width: 240, sortable: true },
-    //       { id: "c1", name: "Sort 1", field: "c1", width: 240, sortable: true },
-    //       { id: "c2", name: "Sort 2", field: "c2", width: 240, sortable: true },
-    //       { id: "c3", name: "Sort 3", field: "c3", width: 240, sortable: true }
-    //     ],
-    //     options = {
-    //       enableCellNavigation: false,
-    //       enableColumnReorder: false
-    //     },
-    //     numberOfItems = 10, items = [], indices, isAsc = true, currentSortCol = { id: "title" }, i;
+      // var grid,
+      //     data = [],
+      //     columns = [
+      //       { id: "title", name: "Title", field: "title", width: 240, sortable: true },
+      //       { id: "c1", name: "Sort 1", field: "c1", width: 240, sortable: true },
+      //       { id: "c2", name: "Sort 2", field: "c2", width: 240, sortable: true },
+      //       { id: "c3", name: "Sort 3", field: "c3", width: 240, sortable: true }
+      //     ],
+      //     options = {
+      //       enableCellNavigation: false,
+      //       enableColumnReorder: false
+      //     },
+      //     numberOfItems = 10, items = [], indices, isAsc = true, currentSortCol = { id: "title" }, i;
 
-    // // Copies and shuffles the specified array and returns a new shuffled array.
-    // function randomize(items) {
-    //   var randomItems = $.extend(true, null, items), randomIndex, temp, index;
-    //   for (index = items.length; index-- > 0;) {
-    //     randomIndex = Math.round(Math.random() * items.length - 1);
-    //     if (randomIndex > -1) {
-    //       temp = randomItems[randomIndex];
-    //       randomItems[randomIndex] = randomItems[index];
-    //       randomItems[index] = temp;
-    //     }
-    //   }
-    //   alert(randomItems[randomIndex]);
-    //   return randomItems;
-    // }
+      // // Copies and shuffles the specified array and returns a new shuffled array.
+      // function randomize(items) {
+      //   var randomItems = $.extend(true, null, items), randomIndex, temp, index;
+      //   for (index = items.length; index-- > 0;) {
+      //     randomIndex = Math.round(Math.random() * items.length - 1);
+      //     if (randomIndex > -1) {
+      //       temp = randomItems[randomIndex];
+      //       randomItems[randomIndex] = randomItems[index];
+      //       randomItems[index] = temp;
+      //     }
+      //   }
+      //   alert(randomItems[randomIndex]);
+      //   return randomItems;
+      // }
 
-    // /// Build the items and indices.
-    // for (i = numberOfItems; i-- > 0;) {
-    //   items[i] = i;
-    //   data[i] = {
-    //     title: "Task ".concat(i + 1)
-    //   };
-    // }
-    // indices = { title: items, c1: randomize(items), c2: randomize(items), c3: randomize(items) };
+      // /// Build the items and indices.
+      // for (i = numberOfItems; i-- > 0;) {
+      //   items[i] = i;
+      //   data[i] = {
+      //     title: "Task ".concat(i + 1)
+      //   };
+      // }
+      // indices = { title: items, c1: randomize(items), c2: randomize(items), c3: randomize(items) };
 
-    // // Assign values to the data.
-    // for (i = numberOfItems; i-- > 0;) {
-    //   data[indices.c1[i]].c1 = "Value ".concat(i + 1);
-    //   data[indices.c2[i]].c2 = "Value ".concat(i + 1);
-    //   data[indices.c3[i]].c3 = "Value ".concat(Math.random());
-    // }
+      // // Assign values to the data.
+      // for (i = numberOfItems; i-- > 0;) {
+      //   data[indices.c1[i]].c1 = "Value ".concat(i + 1);
+      //   data[indices.c2[i]].c2 = "Value ".concat(i + 1);
+      //   data[indices.c3[i]].c3 = "Value ".concat(Math.random());
+      // }
 
-    // // Define function used to get the data and sort it.
-    // function getItem(index) {
-    //   return isAsc ? data[indices[currentSortCol.id][index]] : data[indices[currentSortCol.id][(data.length - 1) - index]];
-    // }
-    // function getLength() {
-    //   return data.length;
-    // }
+      // // Define function used to get the data and sort it.
+      // function getItem(index) {
+      //   return isAsc ? data[indices[currentSortCol.id][index]] : data[indices[currentSortCol.id][(data.length - 1) - index]];
+      // }
+      // function getLength() {
+      //   return data.length;
+      // }
 
-    // grid = new Slick.Grid("#container", {getLength: getLength, getItem: getItem}, columns, options);
-    // grid.onSort.subscribe(function (e, args) {
-    //   currentSortCol = args.sortCol;
-    //   isAsc = args.sortAsc;
-    //   grid.invalidateAllRows();
-    //   grid.render();
-    // });
+      // grid = new Slick.Grid("#container", {getLength: getLength, getItem: getItem}, columns, options);
+      // grid.onSort.subscribe(function (e, args) {
+      //   currentSortCol = args.sortCol;
+      //   isAsc = args.sortAsc;
+      //   grid.invalidateAllRows();
+      //   grid.render();
+      // });
   </script>
 <!-- For sorting not done yet -->
 
